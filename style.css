@@ -1,0 +1,44 @@
+#main {
+    min-height: 200px;
+    width: 300px;
+    border: 1px solid #000;
+    margin: 10% auto;
+}
+
+#title {
+    font-weight: bold;
+    text-align: center;
+}
+
+#nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.task__container {
+    width: 90%;
+    height: 2em;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+    border: 1px solid #000;
+}
+
+.task__container input {
+    margin-left: 5px;
+}
+
+.task__container div {
+    line-height: 2em;
+    font-weight: bold;
+}
+
+.task__container i {
+    margin-right: 5px;
+    line-height: 2em;
+}
+
+.checked {
+    color: green;
+    text-decoration: line-through;
+}
