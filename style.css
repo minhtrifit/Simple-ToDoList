@@ -101,6 +101,10 @@
     margin-left: 10px;
 }
 
+.task__container input:hover {
+    cursor: pointer;
+}
+
 .task__container div {
     font-size: 20px;
     font-weight: bold;
@@ -109,6 +113,10 @@
 .task__container i {
     font-size: 20px;
     margin-right: 10px;
+}
+
+.task__container i:hover {
+    cursor: pointer;
 }
 
 .checked {

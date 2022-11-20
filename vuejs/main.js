@@ -51,8 +51,11 @@ export default {
         },
 
         deleteAllTask() {
-            this.taskList = '';
+            let text = "Remove all task?";
+            if (confirm(text) == true) {
+                this.taskList = '';
             localStorage.removeItem('content');
+            }       
         }
     },
 
