@@ -1,5 +1,5 @@
 export default {
-    data () {
+    data() {
         return {
             taskInput: '',
             Task: {
@@ -7,12 +7,7 @@ export default {
                 content: '',
                 isDelete: false,
             },
-            // taskList: [
-            //     { isCheck: false, content: 'HTML/CSS/JS', isDelete: false, },
-            //     { isCheck: false, content: 'PHP', isDelete: false, },
-            // ],
             taskList: [],
-
         }
     },
 
@@ -24,24 +19,27 @@ export default {
         loadDatabase() { return JSON.parse(localStorage.getItem('content')); },
 
         addTaskHandle() {
-            if(this.loadDatabase()) { this.taskList = this.loadDatabase(); }
-            else { this.taskList = []; }
+            if (this.taskInput == '') { alert('Input task before add!'); }
+            else {
+                if (this.loadDatabase()) { this.taskList = this.loadDatabase(); }
+                else { this.taskList = []; }
 
-            this.Task.isCheck = false;
-            this.Task.content = this.taskInput;
-            this.Task.isDelete = false;
-            
-            this.taskList.push(this.Task);
-            localStorage.setItem('content', JSON.stringify(this.taskList));
-            this.taskInput = '';
+                this.Task.isCheck = false;
+                this.Task.content = this.taskInput;
+                this.Task.isDelete = false;
+
+                this.taskList.push(this.Task);
+                localStorage.setItem('content', JSON.stringify(this.taskList));
+                this.taskInput = '';
+            }
         },
 
         handleCheck(task, taskIndex) {
             var curTaskList = this.loadDatabase();
-            curTaskList[taskIndex].isCheck = !curTaskList[taskIndex].isCheck;  
+            curTaskList[taskIndex].isCheck = !curTaskList[taskIndex].isCheck;
             // this.isCheck = !this.isCheck;
-            
-            this.taskList = curTaskList;     
+
+            this.taskList = curTaskList;
             localStorage.setItem('content', JSON.stringify(this.taskList));
         },
 
@@ -50,17 +48,28 @@ export default {
             curTaskList.splice(taskIndex, 1);
             this.taskList = curTaskList;
             localStorage.setItem('content', JSON.stringify(this.taskList));
+        },
+
+        deleteAllTask() {
+            this.taskList = '';
+            localStorage.removeItem('content');
         }
     },
 
-    mounted() { localStorage.removeItem('content'); },  
+    // onload event
+    mounted() {
+        this.taskList = JSON.parse(localStorage.getItem('content'));
+        //localStorage.removeItem('content');
+    },
 
     template: `
     <div id="main">
-        <div id="title">To do list</div>
         <div id="nav">
-            <input type="text" placeholder="Task content" v-model="taskInput">
-            <button @click="addTaskHandle">Add</button>
+            <input type="text" placeholder="Your task here..." v-model="taskInput">
+            <div class="action">
+                <button @click="addTaskHandle">+</button>
+                <button class="fa fa-trash-o delete" @click="deleteAllTask"></button>
+            </div>
         </div>
         <div id="content" v-for="(task, index) in taskList">
 
