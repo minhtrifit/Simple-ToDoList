@@ -1,1 +1,1 @@
-# Website link: https://minhtrifit.github.io/Simple_ToDoList/
+# Website link: https://minhtrifit.github.io/Simple-ToDoList/
